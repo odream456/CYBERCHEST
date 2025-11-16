@@ -1,0 +1,138 @@
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
+@layer base {
+  body {
+    background: #0a0f1f;
+    color: white;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer utilities {
+  .neon-glow {
+    box-shadow: 
+      0 0 5px theme('colors.purple.500'),
+      0 0 10px theme('colors.purple.500'),
+      0 0 15px theme('colors.purple.500'),
+      inset 0 0 10px theme('colors.purple.500/20');
+  }
+
+  .glow-cyan {
+    box-shadow: 
+      0 0 10px theme('colors.cyan.400'),
+      0 0 20px theme('colors.cyan.400'),
+      0 0 30px theme('colors.cyan.400');
+  }
+
+  .shadow-glow {
+    box-shadow: 
+      0 0 20px theme('colors.cyan.400/50'),
+      0 0 40px theme('colors.cyan.400/30');
+  }
+
+  .shadow-glow-soft {
+    box-shadow: 
+      0 0 15px theme('colors.purple.500/30'),
+      0 0 30px theme('colors.purple.500/20');
+  }
+
+  .shadow-glow-yellow {
+    box-shadow: 
+      0 0 15px theme('colors.yellow.400/50'),
+      0 0 30px theme('colors.yellow.400/30');
+  }
+
+  .shadow-glow-red {
+    box-shadow: 
+      0 0 15px theme('colors.red.400/50'),
+      0 0 30px theme('colors.red.400/30');
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s infinite;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: theme('colors.white/5');
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: theme('colors.cyan.400/50');
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: theme('colors.cyan.400');
+  }
+}
+
+/* Glassmorphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+/* Add to existing animations */
+@keyframes purchaseSuccess {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.purchase-animation {
+  animation: purchaseSuccess 0.6s ease-in-out;
+}
+
+.coin-deduction {
+  animation: coinPulse 0.5s ease-in-out;
+}
+
+@keyframes coinPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.9); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 1; }
+}
+/* Add to your existing Tailwind CSS */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px);
+    opacity: 1;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Ensure footer stays at bottom */
+.min-h-screen {
+  min-height: 100vh;
+}
