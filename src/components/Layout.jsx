@@ -1,46 +1,37 @@
 // src/components/Layout.jsx
 import React, { useState } from 'react';
 import Sidebar from './Sidebar';
-import Footer from './Footer';
 
 const Layout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#0a0f1f] text-white overflow-hidden">
-      <div className="flex flex-1 overflow-hidden">
-        <Sidebar isOpen={sidebarOpen} onToggle={() => setSidebarOpen(!sidebarOpen)} />
-        
-        <div className="flex-1 flex flex-col overflow-hidden ml-0 lg:ml-20">
-          {/* Mobile header */}
-          <div className="lg:hidden p-4 border-b border-white/10">
-            <button
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="p-2 rounded-lg bg-white/5 border border-white/10 hover:border-cyan-400/50 transition-all duration-300"
-            >
-              <MenuIcon />
-            </button>
-          </div>
-
-          {/* Main content */}
-          <main className="flex-1 overflow-auto p-4 lg:p-8">
-            <div className="animate-fade-in">
-              {children}
-            </div>
-          </main>
-
-          {/* Footer */}
-          <Footer />
+    <div className="flex min-h-screen bg-[#0a0f1f] text-white">
+      {/* Sidebar - Always fixed positioned */}
+      <Sidebar 
+        isOpen={sidebarOpen} 
+        onToggle={() => setSidebarOpen(!sidebarOpen)} 
+      />
+      
+      {/* Main content area with proper margin for sidebar */}
+      <div className="flex-1 flex flex-col min-w-0 lg:ml-20">
+        {/* Mobile header - only show on mobile */}
+        <div className="lg:hidden p-4 border-b border-white/10 bg-[#0a0f1f] sticky top-0 z-30">
+          <button
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            className="p-2 rounded-lg bg-white/5 border border-white/10 hover:border-cyan-400/50 transition-all duration-300"
+          >
+            <MenuIcon />
+          </button>
         </div>
-      </div>
 
-      {/* Overlay for mobile */}
-      {sidebarOpen && (
-        <div 
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
-          onClick={() => setSidebarOpen(false)}
-        />
-      )}
+        {/* Main content - this will scroll independently */}
+        <main className="flex-1 overflow-auto">
+          <div className="p-4 lg:p-8">
+            {children}
+          </div>
+        </main>
+      </div>
     </div>
   );
 };
