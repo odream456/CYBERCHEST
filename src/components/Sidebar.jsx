@@ -42,7 +42,7 @@ const Sidebar = ({ isOpen, onToggle }) => {
           {/* Logo Section */}
           <div className="flex-shrink-0 p-4 border-b border-white/10">
             <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500/90 to-cyan-400/90 shadow-md">
-              <img src="/public/fr.png" alt="Logo" className="w-10 h-10 object-contain" />
+              <img src="/frw.svg" alt="Logo" className="w-10 h-10 object-contain" />
             </div>
           </div>
 
